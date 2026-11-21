@@ -1,0 +1,29 @@
+[package]
+name = "yarner-wasm"
+description = "The read-only story player for the browser: opens an export bundle in memory."
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+publish.workspace = true
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+js-sys.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+wasm-bindgen.workspace = true
+yarner-engine.workspace = true
+yarner-format.workspace = true
+
+# aes-gcm still pulls getrandom 0.2 (through rand_core 0.6); in the browser it needs `js`.
+[target.'cfg(all(target_arch = "wasm32", target_os = "unknown"))'.dependencies]
+getrandom02 = { package = "getrandom", version = "0.2", features = ["js"] }
+
+[dev-dependencies]
+tempfile.workspace = true
+tokio.workspace = true
+yarner-engine = { workspace = true, features = ["runtime"] }
+yarner-testkit.workspace = true

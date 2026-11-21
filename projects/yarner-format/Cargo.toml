@@ -1,0 +1,38 @@
+[package]
+name = "yarner-format"
+description = "Encrypted on-disk and export format for yarner stories."
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+publish.workspace = true
+
+[dependencies]
+aes-gcm.workspace = true
+argon2.workspace = true
+base64.workspace = true
+getrandom.workspace = true
+hex.workspace = true
+hkdf.workspace = true
+hmac.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+sha2.workspace = true
+thiserror.workspace = true
+zeroize.workspace = true
+zip.workspace = true
+
+[target.'cfg(not(target_arch = "wasm32"))'.dependencies]
+region.workspace = true
+
+[target.'cfg(windows)'.dependencies]
+windows-sys.workspace = true
+
+[target.'cfg(unix)'.dependencies]
+libc.workspace = true
+
+[target.'cfg(all(target_arch = "wasm32", target_os = "unknown"))'.dependencies]
+getrandom = { workspace = true, features = ["wasm_js"] }
+
+[dev-dependencies]
+tempfile.workspace = true

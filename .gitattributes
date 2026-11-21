@@ -1,0 +1,5 @@
+# Text files use LF in the repo and in checkouts, on every OS.
+* text=auto eol=lf
+
+*.png binary
+*.ico binary

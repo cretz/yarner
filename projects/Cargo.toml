@@ -1,0 +1,53 @@
+[workspace]
+resolver = "3"
+members = ["yarner-format", "yarner-engine", "yarner-server", "yarner-testkit", "yarner-wasm"]
+
+[workspace.package]
+version = "0.0.0"
+edition = "2024"
+license = "MIT"
+repository = "https://github.com/cretz/yarner"
+publish = false
+
+[workspace.dependencies]
+aes-gcm = "0.10"
+anyhow = "1"
+argon2 = "0.5"
+async-trait = "0.1"
+axum = { version = "0.8", features = ["ws"] }
+axum-server = { version = "0.9", features = ["tls-rustls"] }
+base64 = "0.22"
+clap = { version = "4", features = ["derive", "env"] }
+futures-util = "0.3"
+getrandom = "0.3"
+hex = "0.4"
+hkdf = "0.12"
+hmac = "0.12"
+rcgen = "0.14"
+region = "4"
+libc = "0.2"
+windows-sys = { version = "0.61", features = ["Win32_Foundation", "Win32_Security", "Win32_System_JobObjects", "Win32_System_Threading"] }
+reqwest = { version = "0.12", default-features = false, features = ["rustls-tls", "json"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+sha2 = "0.10"
+tempfile = "3"
+wasm-bindgen = "=0.2.126"
+js-sys = "0.3"
+thiserror = "2"
+tower = { version = "0.5", features = ["util"] }
+tower-http = { version = "0.7", features = ["fs"] }
+toml = "0.8"
+tokio = { version = "1", features = ["fs", "io-util", "macros", "net", "process", "rt-multi-thread", "signal", "sync", "time"] }
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+zeroize = { version = "1", features = ["derive"] }
+zip = { version = "2", default-features = false }
+# thinfer's client (wire types, sealed jobs), pinned to a commit on thinfer's `next-work`.
+thinfer-client = { git = "https://github.com/cretz/thinfer", rev = "7857f42e41d568a3a5c10990868fa62077a19bb5" }
+yarner-format = { path = "yarner-format" }
+yarner-engine = { path = "yarner-engine", default-features = false }
+yarner-testkit = { path = "yarner-testkit" }
+
+[profile.release]
+panic = "abort"

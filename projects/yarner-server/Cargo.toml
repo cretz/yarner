@@ -1,0 +1,45 @@
+[package]
+name = "yarner-server"
+description = "The yarner server: holds unlocked stories, runs generation, serves the web client."
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+publish.workspace = true
+
+[[bin]]
+name = "yarner"
+path = "src/main.rs"
+
+[dependencies]
+anyhow.workspace = true
+axum.workspace = true
+axum-server.workspace = true
+base64.workspace = true
+clap.workspace = true
+futures-util.workspace = true
+hex.workspace = true
+rcgen.workspace = true
+reqwest.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+thinfer-client.workspace = true
+tokio.workspace = true
+toml.workspace = true
+tower-http.workspace = true
+tracing.workspace = true
+tracing-subscriber.workspace = true
+yarner-engine = { workspace = true, features = ["runtime"] }
+yarner-format.workspace = true
+yarner-testkit.workspace = true
+zeroize.workspace = true
+
+[target.'cfg(windows)'.dependencies]
+windows-sys.workspace = true
+
+[target.'cfg(target_os = "linux")'.dependencies]
+libc.workspace = true
+
+[dev-dependencies]
+tempfile.workspace = true
+tower.workspace = true
